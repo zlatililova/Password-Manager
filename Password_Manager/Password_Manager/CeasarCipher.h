@@ -6,8 +6,9 @@ class CeasarCipher : public Cipher
 {
 public:
 	CeasarCipher(int shift);
-	std::string encrypt(std::string& key) override;
-	std::string decrypt(std::string& key) override;
+	std::string encrypt(const std::string& key) override;
+	std::string decrypt(const std::string& key) override;
+	std::string getName() override;
 private:
 	int shift;
 };

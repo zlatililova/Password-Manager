@@ -2,8 +2,10 @@
 #include <string>
 class Cipher
 {
-	virtual std::string encrypt(std::string& key) = 0;
-	virtual std::string decrypt(std::string& key) = 0;
+public:
+	virtual std::string encrypt(const std::string& key) = 0;
+	virtual std::string decrypt(const std::string& key) = 0;
+	virtual std::string getName() = 0;
 	virtual ~Cipher() = default;
 };
 
