@@ -12,7 +12,6 @@ public:
 
 private:
 	void populateMap();
-
 	std::string text;
 	MyMap<char, int> textCode;
 };

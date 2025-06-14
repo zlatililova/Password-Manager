@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "CeasarCipher.h"
+#include "TextCodeCipher.h"
 
 int main()
 {
@@ -10,5 +11,9 @@ int main()
     //std::string test("Hello!!!");
     //std::string enc = c->encrypt(test);
     //std::cout << enc << " " << c->decrypt(enc);
+
+    Cipher* c = new TextCodeCipher("the brown fox jumps over the lazy dog THE BROWN FOX JUMPS OVER THE LAZY DOG");
+    std::cout << c->decrypt("38,2,18,0,59,1,6,34");
+    delete c;
 }
 

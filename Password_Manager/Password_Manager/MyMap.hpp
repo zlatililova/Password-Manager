@@ -10,6 +10,8 @@ public:
 	const Value* get(const Key& key) const;
 	bool contains(const Key& key) const;
 
+	const Key& getByValue(const Value val) const;
+
 private:
 	struct Entry {
 		Key key;
@@ -76,6 +78,18 @@ bool MyMap<Key, Value>::contains(const Key& key) const
 	}
 
 	return false;
+}
+
+template<class Key, class Value>
+inline const Key& MyMap<Key, Value>::getByValue(const Value val) const
+{
+	for (int i = 0; i < data.size(); i++) {
+		if (data[i].value == val) {
+			return data[i].key;
+		}
+	}
+
+	return Key();
 }
 
 

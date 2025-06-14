@@ -4,11 +4,11 @@ namespace Constants {
 	const unsigned ALPHABET_LEN = 26;
 };
 
-bool isUpper(char ch) {
+static bool isUpper(char ch) {
 	return ch >= 'A' && ch <= 'Z';
 }
 
-bool isLower(char ch) {
+static bool isLower(char ch) {
 	return ch >= 'a' && ch <= 'z';
 }
 
