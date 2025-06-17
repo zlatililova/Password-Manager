@@ -1,43 +1,9 @@
 #include "TextCodeCipher.h"
 #include <vector>
-#include <sstream>
+#include "Utils.h"
 
 TextCodeCipher::TextCodeCipher(std::string text) : text(text) {
 	populateMap();
-}
-
-static std::string encodeInts(const std::vector<int>& data) {
-	std::string res;
-
-	for (size_t i = 0; i < data.size(); i++) {
-		res += std::to_string(data[i]);
-		if (i < data.size() - 1) {
-			res += ",";
-		}
-	}
-	return res;
-}
-
-static int stringToInt(const std::string& s) {
-	int result = 0;
-
-	for (int i = 0; i < s.length(); ++i) {
-		if (s[i] >= '0' && s[i] <= '9') {
-			result = result * 10 + (s[i] - '0');
-		}
-	}
-	return result;
-}
-
-static std::vector<int> parseInts(const std::string& data) {
-	std::stringstream s(data);
-	std::string curr;
-	std::vector<int> res;
-	while (std::getline(s, curr, ',')) {
-		res.push_back(stringToInt(curr));
-	}
-
-	return res;
 }
 
 std::string TextCodeCipher::encrypt(const std::string& key) {
