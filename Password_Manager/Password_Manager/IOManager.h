@@ -5,8 +5,8 @@
 class IOManager {
 public:
     static IOManager* getInstance();
-    std::string loadFile(const std::string& path, Cipher* cipher);
-    void saveFile(const std::string& path, const std::string& content, Cipher* cipher);
+    std::string loadFile(const std::string& path);
+    void saveFile(const std::string& path, const std::string& content);
 
 private:
     IOManager() = default;

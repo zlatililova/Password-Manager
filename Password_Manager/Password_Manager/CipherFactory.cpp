@@ -3,12 +3,15 @@
 #include "TextCodeCipher.h"
 #include "Utils.h"
 
-Cipher* CipherFactory::createInstance(std::string& name, std::string& arg)
+Cipher* CipherFactory::createInstance(std::string& name, std::vector<std::string>& arg)
 {
     if (name == "CC") {
+        if (arg.size() != 1) {
+            throw std::invalid_argument("Insufficient arguments for the cipher");
+        }
         int shift = 0;
         try {
-            shift = stringToInt(arg);
+            shift = stringToInt(arg[0]);
         }
         catch (std::exception& e) {
             std::cerr << "Error when initiating Ceasar cipher: " << e.what() << std::endl;
@@ -17,7 +20,10 @@ Cipher* CipherFactory::createInstance(std::string& name, std::string& arg)
          return new CeasarCipher(shift);
     }
     else if (name == "TCC") {
-        return new TextCodeCipher(arg);
+        if (arg.size() != 1) {
+            throw std::invalid_argument("Insufficient arguments for the cipher");
+        }
+        return new TextCodeCipher(arg[0]);
     }
 
     // part of the code that shouldn't be reached
