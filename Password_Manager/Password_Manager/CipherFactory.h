@@ -5,6 +5,6 @@
 class CipherFactory
 {
 public:
-	static Cipher* createInstance(std::string& name, std::vector<std::string>& arg);
+	static Cipher* createInstance(const std::string& name, const std::vector<std::string>& arg);
 };
 

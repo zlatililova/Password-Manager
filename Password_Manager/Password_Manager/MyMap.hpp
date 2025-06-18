@@ -12,6 +12,9 @@ public:
 
 	const Key& getByValue(const Value val) const;
 
+	int getSize() const;
+
+	
 private:
 	struct Entry {
 		Key key;
@@ -19,6 +22,13 @@ private:
 	};
 
 	std::vector<Entry> data;
+
+public:
+	typename std::vector<Entry>::iterator begin() { return data.begin(); }
+	typename std::vector<Entry>::iterator end() { return data.end(); }
+
+	typename std::vector<Entry>::const_iterator begin() const { return data.begin(); }
+	typename std::vector<Entry>::const_iterator end() const { return data.end(); }
 
 };
 
@@ -90,6 +100,12 @@ inline const Key& MyMap<Key, Value>::getByValue(const Value val) const
 	}
 
 	return Key();
+}
+
+template<class Key, class Value>
+inline int MyMap<Key, Value>::getSize() const
+{
+	return data.size();
 }
 
 

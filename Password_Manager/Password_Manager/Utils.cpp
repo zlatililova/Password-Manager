@@ -8,7 +8,7 @@ bool isDigit(char ch) {
 }
 
 bool isValidNumber(const std::string& s) {
-	if (!isDigit(s[0]) || s[0] != '-')
+	if (!isDigit(s[0]) && s[0] != '-')
 		return false;
 	for (int i = 1; i < s.size(); i++) {
 		if (!isDigit(s[i])) {
@@ -41,6 +41,22 @@ std::vector<int> parseInts(const std::string& data) {
 	try {
 		while (std::getline(s, curr, ',')) {
 			res.push_back(stringToInt(curr));
+		}
+	}
+	catch (std::exception& e) {
+		std::cerr << "Error when parsing encoded string: " << e.what() << std::endl;
+	}
+
+	return res;
+}
+
+std::vector<std::string> parseVector(const std::string& data) {
+	std::stringstream s(data);
+	std::string curr;
+	std::vector<std::string> res;
+	try {
+		while (std::getline(s, curr, ',')) {
+			res.push_back(curr);
 		}
 	}
 	catch (std::exception& e) {

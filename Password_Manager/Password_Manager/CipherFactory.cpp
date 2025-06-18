@@ -3,7 +3,7 @@
 #include "TextCodeCipher.h"
 #include "Utils.h"
 
-Cipher* CipherFactory::createInstance(std::string& name, std::vector<std::string>& arg)
+Cipher* CipherFactory::createInstance(const std::string& name, const std::vector<std::string>& arg)
 {
     if (name == "CC") {
         if (arg.size() != 1) {
@@ -12,6 +12,7 @@ Cipher* CipherFactory::createInstance(std::string& name, std::vector<std::string
         int shift = 0;
         try {
             shift = stringToInt(arg[0]);
+            std::cout << shift;
         }
         catch (std::exception& e) {
             std::cerr << "Error when initiating Ceasar cipher: " << e.what() << std::endl;

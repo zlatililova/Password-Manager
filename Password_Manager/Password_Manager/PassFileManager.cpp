@@ -2,9 +2,12 @@
 #include "IOManager.h"
 #include "CipherFactory.h"
 
+PassFileManager* PassFileManager::getInstance() {
+	static PassFileManager instance;
+	return &instance;
+}
 
-
-void PassFileManager::openFile(std::string& path, std::string& password)
+void PassFileManager::openFile(const std::string& path, const std::string& password)
 {	
 	std::string encrypted = IOManager::getInstance()->loadFile(path);
 	std::string plain = fileEncryptor->decryptFile(encrypted);
@@ -18,7 +21,7 @@ void PassFileManager::openFile(std::string& path, std::string& password)
 
 }
 
-void PassFileManager::createFile(std::string& path, std::string& cipherName, std::vector<std::string>& args, std::string& pass)
+void PassFileManager::createFile(const std::string& path, const std::string& cipherName, const std::vector<std::string>& args, const std::string& pass)
 {
 	Cipher* cipher = CipherFactory::createInstance(cipherName, args);
 	currentFile = new PasswordFile(path, cipher, pass);
