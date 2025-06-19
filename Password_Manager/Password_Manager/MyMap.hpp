@@ -1,3 +1,6 @@
+#ifndef MYMAP_HPP
+#define MYMAP_HPP
+
 #include <iostream>
 #include <vector>
 
@@ -110,3 +113,4 @@ inline int MyMap<Key, Value>::getSize() const
 
 
 
+#endif // MYMAP_HPP

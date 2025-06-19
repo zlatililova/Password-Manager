@@ -34,6 +34,49 @@ int stringToInt(const std::string& s) {
 	return result;
 }
 
+std::string IntToString(int num)
+{
+		if (num == 0) {
+			return "0";
+		}
+
+		bool isNegative = false;
+		if (num < 0) {
+			isNegative = true;
+			num = -num;
+		}
+
+		char buffer[20];
+		int i = 0;
+
+		while (num > 0) {
+			buffer[i++] = (num % 10) + '0';
+			num /= 10;
+		}
+
+		if (isNegative) {
+			buffer[i++] = '-';
+		}
+
+		buffer[i] = '\0';
+
+		
+		int start = 0;
+		int end = i - 1;
+		if (isNegative) {
+			start = 1;
+		}
+		while (start < end) {
+			char temp = buffer[start];
+			buffer[start] = buffer[end];
+			buffer[end] = temp;
+			start++;
+			end--;
+		}
+
+		return std::string(buffer);
+}
+
 std::vector<int> parseInts(const std::string& data) {
 	std::stringstream s(data);
 	std::string curr;
@@ -56,6 +99,22 @@ std::vector<std::string> parseVector(const std::string& data) {
 	std::vector<std::string> res;
 	try {
 		while (std::getline(s, curr, ',')) {
+			res.push_back(curr);
+		}
+	}
+	catch (std::exception& e) {
+		std::cerr << "Error when parsing encoded string: " << e.what() << std::endl;
+	}
+
+	return res;
+}
+
+std::vector<std::string> splitString(const std::string& data) {
+	std::stringstream s(data);
+	std::string curr;
+	std::vector<std::string> res;
+	try {
+		while (std::getline(s, curr, ' ')) {
 			res.push_back(curr);
 		}
 	}

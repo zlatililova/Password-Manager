@@ -60,8 +60,12 @@ const std::vector<WebsiteEntity> PasswordFile::loadAllPasswords(const std::strin
 	if (!entries.contains(site)) {
 		throw std::invalid_argument("No passwords for this site!");
 	}
-	const std::vector<WebsiteEntity>* entry = entries.get(site);
-	return *entry;
+	std::vector<WebsiteEntity> entry(*entries.get(site));
+	for (int i = 0; i < entry.size(); i++) {
+		entry[i].password = cipher->decrypt(entry[i].password);
+	}
+
+	return entry;
 }
 
 void PasswordFile::updatePassword(const std::string& site, const std::string& user, const std::string& newPass)
@@ -73,7 +77,7 @@ void PasswordFile::updatePassword(const std::string& site, const std::string& us
 	std::vector<WebsiteEntity>* entry = entries.get(site);
 	for (int i = 0; i < entry->size(); i++) {
 		if (entry->at(i).username == user) {
-			entry->at(i).password = newPass;
+			entry->at(i).password = cipher->encrypt(newPass);
 			return;
 		}
 	}
@@ -148,13 +152,12 @@ void PasswordFile::deserialize(const std::string& path, const std::string& plain
 				std::string username = line.substr(firstTab + 1, secondTab - (firstTab + 1));
 				std::string password = line.substr(secondTab + 1);
 
-				savePassword(currentSite, username, password);
+				fillInPassword(currentSite, username, password);
 			}
 
 			lineCount++;
 		}
 	}
-
 
 std::string PasswordFile::serialize()
 {
@@ -163,7 +166,7 @@ std::string PasswordFile::serialize()
 	out += configPassword + "\n";
 
 	out += cipher->getName() + "\n";
-	out += "cipherConfig\n";
+	out += cipher->getConfig() + "\n";
 
 	for (auto& siteEntry : entries) {
 		out += siteEntry.key + "\n";
@@ -187,4 +190,17 @@ std::string PasswordFile::getConfigPassword() const
 std::string PasswordFile::getFilePath() const
 {
 	return filePath;
+}
+
+void PasswordFile::fillInPassword(const std::string& site, const std::string& user, const std::string& pass)
+{
+	std::vector<WebsiteEntity>* entry;
+	WebsiteEntity newElem{user, pass};
+	
+	if (!entries.contains(site)) {
+		entries.insert(site, std::vector<WebsiteEntity>());
+	}
+
+	entry = entries.get(site);
+	entry->push_back(newElem);
 }

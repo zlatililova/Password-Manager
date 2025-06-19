@@ -1,5 +1,6 @@
 #include "CreateCommand.h"
 #include "CipherFactory.h"
+#include "PassFileManager.h"
 
 void CreateCommand::execute(const std::vector<std::string> args)
 {
@@ -10,6 +11,8 @@ void CreateCommand::execute(const std::vector<std::string> args)
 	std::vector<std::string> cipherArgs(args.begin() + 2, args.end() - 1);
 
 	PasswordFile* pFile = createFile(args[0], args[1], cipherArgs, args[args.size() - 1]);
+
+	PassFileManager::getInstance()->setFile(pFile);
 
 }
 

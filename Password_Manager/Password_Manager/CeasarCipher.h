@@ -9,6 +9,7 @@ public:
 	std::string encrypt(const std::string& key) override;
 	std::string decrypt(const std::string& key) override;
 	std::string getName() override;
+	std::string getConfig() override;
 private:
 	int shift;
 };

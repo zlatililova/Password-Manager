@@ -30,6 +30,11 @@ std::string TextCodeCipher::getName() {
 	return "TCC";
 }
 
+std::string TextCodeCipher::getConfig()
+{
+	return text;
+}
+
 void TextCodeCipher::populateMap() {
 	for (int i = 0; i < text.size(); i++) {
 		if (!textCode.contains(text[i])) {

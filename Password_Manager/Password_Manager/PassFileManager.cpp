@@ -32,6 +32,7 @@ void PassFileManager::closeFile()
 	std::string encrypted = fileEncryptor->encryptFile(plainText);
 	IOManager::getInstance()->saveFile(currentFile->getFilePath(), encrypted);
 	delete currentFile;
+	currentFile = nullptr;
 
 }
 

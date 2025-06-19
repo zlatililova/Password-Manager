@@ -25,6 +25,8 @@ public:
     std::string getFilePath() const;
 
 private:
+    void fillInPassword(const std::string& site, const std::string& user, const std::string& pass);
+
     std::string filePath;
     std::string configPassword;
     Cipher* cipher;
