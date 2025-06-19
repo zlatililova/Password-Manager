@@ -4,7 +4,7 @@
 
 FileEncryptor::FileEncryptor() : cipher(nullptr)
 {
-	cipher = new CeasarCipher(0);
+	cipher = new CeasarCipher(15);
 }
 
 FileEncryptor::~FileEncryptor()

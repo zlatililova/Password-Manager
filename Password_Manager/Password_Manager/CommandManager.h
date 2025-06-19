@@ -7,11 +7,12 @@
 class CommandManager
 {
 public:
-    void registerCommand(const std::string& name, Command* command);
+    static CommandManager* getInstance();
+    void registerCommand(const std::string& name, std::shared_ptr <Command> command);
     void executeCommand(const std::string& inputLine);
-    ~CommandManager();
 private:
-    MyMap<std::string, Command*> commands;
+    CommandManager();
+    MyMap<std::string, std::shared_ptr <Command>> commands;
 
 };
 
