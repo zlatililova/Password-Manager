@@ -136,3 +136,40 @@ std::string encodeInts(const std::vector<int>& data) {
 	}
 	return res;
 }
+
+
+int gcd(int a, int b) {
+	while (b) {
+		a %= b;
+		std::swap(a, b);
+	}
+	return a;
+}
+
+int modInverse(int a, int m) {
+	a = a % m;
+	for (int x = 1; x < m; x++) {
+		if ((a * x) % m == 1) {
+			return x;
+		}
+	}
+	return -1;
+}
+
+bool isUpper(char ch) {
+	return ch >= 'A' && ch <= 'Z';
+}
+char toUpper(char ch) {
+	return ch - 'a' + 'A';
+}
+
+bool isLower(char ch) {
+	return ch >= 'a' && ch <= 'z';
+}
+int charToInt(char c) {
+	return toUpper(c) - 'A';
+}
+
+char intToChar(int i) {
+	return (char)('A' + i);
+}

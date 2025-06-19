@@ -3,15 +3,10 @@
 
 namespace Constants {
 	const unsigned ALPHABET_LEN = 26;
+	const unsigned MOD = 26;
 };
 
-static bool isUpper(char ch) {
-	return ch >= 'A' && ch <= 'Z';
-}
 
-static bool isLower(char ch) {
-	return ch >= 'a' && ch <= 'z';
-}
 
 CeasarCipher::CeasarCipher(int shift) : shift(shift) {}
 
