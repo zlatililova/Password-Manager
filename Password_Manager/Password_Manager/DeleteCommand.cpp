@@ -3,7 +3,7 @@
 
 void DeleteCommand::execute(const std::vector<std::string> args)
 {
-	if (args.size() < 2) {
+	if (args.size() < 1) {
 		throw std::invalid_argument("Insufficient number of arguments!");
 	}
 
@@ -11,7 +11,11 @@ void DeleteCommand::execute(const std::vector<std::string> args)
 		throw std::runtime_error("There is no file opened!");
 	}
 
-
-	PassFileManager::getInstance()->getFile()->deletePassword(args[0], args[1]);
+	if (args.size() == 1) {
+		PassFileManager::getInstance()->getFile()->deleteAllPasswords(args[0]);
+	}
+	else if (args.size() == 2) {
+		PassFileManager::getInstance()->getFile()->deletePassword(args[0], args[1]);
+	}
 
 }

@@ -109,6 +109,15 @@ void PasswordFile::deletePassword(const std::string& site, const std::string& us
 	
 }
 
+void PasswordFile::deleteAllPasswords(const std::string& site)
+{
+	if (!entries.contains(site)) {
+		throw std::invalid_argument("No passwords for this site!");
+	}
+
+	entries.remove(site);
+}
+
 void PasswordFile::deserialize(const std::string& path, const std::string& plainText)
 {
 		std::istringstream ss(plainText);

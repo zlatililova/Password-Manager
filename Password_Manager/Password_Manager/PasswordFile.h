@@ -13,10 +13,11 @@ public:
     ~PasswordFile();
 
     void savePassword(const std::string& site, const std::string& user, const std::string& pass);
-    const std::string loadPassword(const std::string& site, const std::string& user = "") const ;
+    const std::string loadPassword(const std::string& site, const std::string& user) const ;
     const std::vector<WebsiteEntity> loadAllPasswords(const std::string& site) const;
     void updatePassword(const std::string& site, const std::string& user, const std::string& newPass);
-    void deletePassword(const std::string& site, const std::string& user = "");
+    void deletePassword(const std::string& site, const std::string& user);
+    void deleteAllPasswords(const std::string& site);
 
     void deserialize(const std::string& path, const std::string& plainText);
     std::string serialize();
