@@ -160,6 +160,9 @@ bool isUpper(char ch) {
 	return ch >= 'A' && ch <= 'Z';
 }
 char toUpper(char ch) {
+	if (isUpper(ch))
+		return ch;
+
 	return ch - 'a' + 'A';
 }
 

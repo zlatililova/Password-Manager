@@ -12,6 +12,16 @@ Matrix::Matrix(int r, int c) : rows(r), cols(c), data(r, std::vector<int>(c)) {}
 
 Matrix::Matrix(const std::vector<std::vector<int>>& d) : rows(d.size()), cols(d[0].size()), data(d) {}
 
+int Matrix::getRows() const
+{
+    return rows;
+}
+
+int Matrix::getCols() const
+{
+    return cols;
+}
+
 int& Matrix::operator()(int r, int c) {
     return data[r][c];
 }
@@ -60,13 +70,13 @@ int Matrix::determinant() const {
     }
     else if (rows == 2) {
         int det = data[0][0] * data[1][1] - data[0][1] * data[1][0];
-        return (det % Constants::MOD + Constants::MOD) % MOD; // Ensure positive modulo
+        return (det % Constants::MOD + Constants::MOD) % Constants::MOD; // Ensure positive modulo
     }
     else if (rows == 3) {
         int det = data[0][0] * (data[1][1] * data[2][2] - data[1][2] * data[2][1]) -
             data[0][1] * (data[1][0] * data[2][2] - data[1][2] * data[2][0]) +
             data[0][2] * (data[1][0] * data[2][1] - data[1][1] * data[2][0]);
-        return (det % Constants::MOD + Constants::MOD) % MOD;
+        return (det % Constants::MOD + Constants::MOD) % Constants::MOD;
     }
     else {
         throw std::runtime_error("Determinant calculation for n > 3 not implemented!");
@@ -101,7 +111,7 @@ Matrix Matrix::adjugate() const {
         Matrix temp_adj = adj;
         for (int i = 0; i < rows; ++i) {
             for (int j = 0; j < cols; ++j) {
-                adj(i, j) = (temp_adj(j, i) % Constants::MOD + Constants::MOD) % MOD;
+                adj(i, j) = (temp_adj(j, i) % Constants::MOD + Constants::MOD) % Constants::MOD;
             }
         }
 
@@ -112,7 +122,7 @@ Matrix Matrix::adjugate() const {
 
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            adj(i, j) = (adj(i, j) % Constants::MOD + Constants::MOD) % MOD;
+            adj(i, j) = (adj(i, j) % Constants::MOD + Constants::MOD) % Constants::MOD;
         }
     }
     return adj;
