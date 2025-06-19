@@ -6,8 +6,8 @@ class PassFileManager
 {
 public:
     static PassFileManager* getInstance();
-    void openFile(const std::string& path, const std::string& password);
-    void createFile(const std::string& path, const std::string& cipherName, const std::vector<std::string>& args, const std::string& pass);
+    void openFile(const std::string& path);
+    void setFile(PasswordFile* passFile);
     PasswordFile* getFile();
     void closeFile();
     bool hasOpenFile() const;

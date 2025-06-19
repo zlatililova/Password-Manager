@@ -7,25 +7,18 @@ PassFileManager* PassFileManager::getInstance() {
 	return &instance;
 }
 
-void PassFileManager::openFile(const std::string& path, const std::string& password)
+void PassFileManager::openFile(const std::string& path)
 {	
 	std::string encrypted = IOManager::getInstance()->loadFile(path);
 	std::string plain = fileEncryptor->decryptFile(encrypted);
-	
 	currentFile = new PasswordFile();
 	currentFile->deserialize(path, plain);
 
-	if (password != currentFile->getConfigPassword()) {
-		throw std::runtime_error("Incorrect password! Cannot open the file");
-	}
-
 }
 
-void PassFileManager::createFile(const std::string& path, const std::string& cipherName, const std::vector<std::string>& args, const std::string& pass)
+void PassFileManager::setFile(PasswordFile* passFile)
 {
-	Cipher* cipher = CipherFactory::createInstance(cipherName, args);
-	currentFile = new PasswordFile(path, cipher, pass);
-
+	currentFile = passFile;
 }
 
 PasswordFile* PassFileManager::getFile()
@@ -38,6 +31,7 @@ void PassFileManager::closeFile()
 	std::string plainText = currentFile->serialize();
 	std::string encrypted = fileEncryptor->encryptFile(plainText);
 	IOManager::getInstance()->saveFile(currentFile->getFilePath(), encrypted);
+	delete currentFile;
 
 }
 

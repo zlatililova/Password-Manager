@@ -16,7 +16,7 @@ int main()
     delete c;*/
 
 
-    PassFileManager::getInstance()->createFile("./test.txt", "CC", std::vector<std::string>{"3"}, "abc");
+    PassFileManager::getInstance()->openFile("./test.txt", "aaa");
     PassFileManager::getInstance()->closeFile();
 }
 

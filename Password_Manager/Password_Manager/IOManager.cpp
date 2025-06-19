@@ -35,3 +35,17 @@ void IOManager::saveFile(const std::string& path, const std::string& content)
     ofs.close();
 }
 
+std::string IOManager::readLine(const std::string& path)
+{
+
+    std::ifstream ifs(path);
+    if (!ifs) {
+        throw std::runtime_error("Could not open file for reading");
+    }
+    std::string line;
+    std::getline(ifs, line);
+    ifs.close();
+
+    return line;
+}
+
