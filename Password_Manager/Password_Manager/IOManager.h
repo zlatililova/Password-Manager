@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include "Cipher.h"
 
 class IOManager {
 public:

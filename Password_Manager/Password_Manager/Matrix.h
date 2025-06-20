@@ -13,7 +13,6 @@ public:
     int& operator()(int r, int c);
     int operator()(int r, int c) const;
     Matrix operator*(const Matrix& other) const;
-    void print() const;
     int determinant() const;
     Matrix adjugate() const;
     Matrix inverse() const;

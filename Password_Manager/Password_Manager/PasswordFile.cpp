@@ -191,10 +191,6 @@ std::string PasswordFile::serialize()
 
 }
 
-std::string PasswordFile::getConfigPassword() const
-{
-	return configPassword;
-}
 
 std::string PasswordFile::getFilePath() const
 {

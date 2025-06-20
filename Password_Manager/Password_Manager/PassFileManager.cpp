@@ -16,8 +16,17 @@ void PassFileManager::openFile(const std::string& path)
 
 }
 
+std::string PassFileManager::getFilePassword(const std::string& path)
+{
+	std::string pass = IOManager::getInstance()->readLine(path);
+	return fileEncryptor->decryptFile(pass);
+}
+
 void PassFileManager::setFile(PasswordFile* passFile)
 {
+	if (hasOpenFile()) {
+		closeFile();
+	}
 	currentFile = passFile;
 }
 

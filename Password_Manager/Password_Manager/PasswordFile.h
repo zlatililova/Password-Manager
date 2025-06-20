@@ -22,7 +22,6 @@ public:
     void deserialize(const std::string& path, const std::string& plainText);
     std::string serialize();
 
-    std::string getConfigPassword() const;
     std::string getFilePath() const;
 
 private:

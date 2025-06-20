@@ -3,10 +3,6 @@
 #include "PassFileManager.h"
 
 
-std::string OpenCommand::readFilePassword(const std::string& filename)
-{
-	return IOManager::getInstance()->readLine(filename);
-}
 
 bool OpenCommand::checkPassword(const std::string& pass, const std::string& readPass)
 {
@@ -15,7 +11,7 @@ bool OpenCommand::checkPassword(const std::string& pass, const std::string& read
 
 PasswordFile* OpenCommand::openFile(const std::string& path, const std::string& password) {
 
-	std::string pass = readFilePassword(path);
+	std::string pass = PassFileManager::getInstance()->getFilePassword(path);
 
 	if (!checkPassword(pass, password)) {
 		throw std::runtime_error("Incorrect password! Cannot open the file");

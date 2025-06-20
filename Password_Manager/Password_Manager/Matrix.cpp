@@ -51,15 +51,6 @@ Matrix Matrix::operator*(const Matrix& other) const {
     return result;
 }
 
-void Matrix::print() const {
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            std::cout << data[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-
 int Matrix::determinant() const {
     if (rows != cols) {
         throw std::runtime_error("Cannot calculate determinant for non-square matrix!");

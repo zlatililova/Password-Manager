@@ -7,6 +7,7 @@ class PassFileManager
 public:
     static PassFileManager* getInstance();
     void openFile(const std::string& path);
+    std::string getFilePassword(const std::string& path);
     void setFile(PasswordFile* passFile);
     PasswordFile* getFile();
     void closeFile();

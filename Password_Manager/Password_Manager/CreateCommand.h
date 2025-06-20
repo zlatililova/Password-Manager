@@ -8,6 +8,7 @@ public:
 	void execute(const std::vector<std::string>args) override;
 
 private:
-	PasswordFile* createFile(const std::string& path, const std::string& cipherName, const std::vector<std::string>& args, const std::string& pass);
+	PasswordFile* createFile(const std::string& path, const std::string& cipherName,
+		const std::vector<std::string>& args, const std::string& pass);
 };
 
